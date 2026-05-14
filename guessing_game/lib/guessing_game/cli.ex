@@ -15,20 +15,19 @@ defmodule GuessingGameCli do
     guess =
       IO.gets("Enter your guess: ")
       |> String.trim()
-      |> String.to_integer()
     guess == :exit && exit(:normal)
     check_guess(guess, target)
   end
   def check_guess(guess, target) do
-    cond do
-      guess == target ->
+    case Integer.parse(guess) do
+      {guess, _} when guess == target ->
         IO.puts("Correct!")
         :correct
-      guess < target ->
+      {guess, _} when guess < target ->
         IO.puts("Too low!")
         :too_low
         input_number(target)
-      guess > target ->
+      {guess, _} ->
         IO.puts("Too high!")
         :too_high
         input_number(target)
