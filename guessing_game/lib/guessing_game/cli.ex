@@ -16,6 +16,7 @@ defmodule GuessingGameCli do
       IO.gets("Enter your guess: ")
       |> String.trim()
     guess == :exit && exit(:normal)
+    game_loop(secret_number, attempts)
     check_guess(guess, target)
   end
   def check_guess(guess, target) do
