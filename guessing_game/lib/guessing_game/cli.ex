@@ -20,10 +20,18 @@ defmodule GuessingGameCli do
     check_guess(guess, target)
   end
   def check_guess(guess, target) do
-    case guess do
-      ^target -> :correct
-      _ when guess < target -> :too_low
-      _ -> :too_high
+    cond do
+      guess == target ->
+        IO.puts("Correct!")
+        :correct
+      guess < target ->
+        IO.puts("Too low!")
+        :too_low
+        input_number(target)
+      guess > target ->
+        IO.puts("Too high!")
+        :too_high
+        input_number(target)
     end
   end
 end
