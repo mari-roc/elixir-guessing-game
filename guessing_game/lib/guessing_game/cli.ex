@@ -13,4 +13,26 @@ defmodule GuessingGame.Cli do
       |> String.trim()
     GuessingGame.GameEngine.input_number(target, guess)
   end
+  def check_number(guess, target) do
+    case GuessingGame.Parse.check_guess(guess, target) do
+      :correct ->
+        IO.puts("Correct!")
+
+      :too_low ->
+        IO.puts("Too low!")
+        input_number(target)
+
+      :too_high ->
+        IO.puts("Too high!")
+        input_number(target)
+
+      :invalid ->
+        IO.puts("Invalid input!")
+        input_number(target)
+    end
+  end
+  def exit_game do
+    IO.puts("Thanks for playing! Goodbye!")
+    exit(:normal)
+  end
 end
