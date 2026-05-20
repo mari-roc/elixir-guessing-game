@@ -7,11 +7,11 @@ defmodule GuessingGame.Parse do
       {guess, _} when guess < target ->
         IO.puts("Too low!")
         :too_low
-        GuessingGame.GameEngine.input_number(target, guess)
+        GuessingGame.Cli.input_number(target)
       {guess, _} ->
         IO.puts("Too high!")
         :too_high
-        GuessingGame.GameEngine.input_number(target, guess)
+        GuessingGame.Cli.input_number(target)
     end
   end
 end
